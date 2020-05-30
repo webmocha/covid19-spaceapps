@@ -6,6 +6,9 @@
   "repository": "https://github.com/webmocha/covid19-spaceapps.git",
   "author": "Webmocha",
   "license": "MIT",
+  "engines": {
+    "node": ">=12.16.1"
+  },
   "scripts": {
     "start": "parcel ./src/index.html"
   },
