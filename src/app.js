@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDom from "react-dom";
+import Globe from "./globe"; 
 
 const App = () => (
   <div>
-    <h1>Hello World</h1>
+    <Globe />
   </div>
 );
 
