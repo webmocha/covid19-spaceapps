@@ -1,14 +1,14 @@
 import React, { useMemo } from "react";
-import Globe from "react-globe.gl";  
+import GlobeComponent from "react-globe.gl";  
 import image from "./earth-night.jpg";
 
-const World = () => {
+const Globe = () => {
  
   return (
-    <Globe 
+    <GlobeComponent 
       globeImageUrl={image}
     />
   )
 }
 
-export default World;
+export default Globe;
