@@ -59,3 +59,9 @@ type entries{
 curl http://localhost:4122/v1/api/spaceapps/graphql -d
   '{ "query": "{ entries(where: {city: \"LosAngeles\"} ) @gosat { city\n date\n latitude\n longitude\n XCO2 } }" }'
 ```
+
+## Mission Control
+
+create an ssh tunnel `ssh -NL 4122:localhost:4122 covid19-spaceapps`
+
+open http://localhost:4122/mission-control
