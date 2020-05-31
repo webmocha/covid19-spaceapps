@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDom from "react-dom";
-import Globe from "./globe"; 
+import Globe from "./globe";
+import Timeline from "./components/timeline";
 
-const App = () => (
-  <div>
-    <Globe />
-  </div>
-);
+function App() {
+  const [currentDate, setCurrentDate] = useState(undefined);
 
+  useEffect(() => {
+    console.log(currentDate)
+  }, currentDate)
+
+  return (
+    <div>
+      <Timeline setDate={setCurrentDate} />
+      <Globe />
+    </div>
+  );
+}
 
 ReactDom.render(<App/>, document.getElementById("app"));
