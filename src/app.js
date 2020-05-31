@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ReactDom from "react-dom";
 import Globe from "./globe";
 import Timeline from "./components/timeline";
@@ -7,7 +7,19 @@ import Filter from "./components/filter";
 function App() {
   const [currentDate, setCurrentDate] = useState(undefined);
   const [currentType, setCurrentType] = useState()
-  const [ data, setData ] = useState([]);
+  const [data, setData] = useState([]);
+
+  const filteredData = useMemo(() => 
+    data
+      .filter(d => d.date.includes(currentDate))
+      .map(d => ({
+        date: d.date,
+        latitude: d.latitude,
+        longitude: d.longitude,
+        gasValue: d[currentType],
+        gasType: currentType
+      }))
+  , [data, currentDate, currentType])
 
   useEffect(() => {
     fetch(`https://spaceapps.webmocha.com/v1/api/gosat/graphql`, {
@@ -23,7 +35,7 @@ function App() {
     <div>
       <Timeline setDate={setCurrentDate} />
       <Filter setFilterType={setCurrentType} />
-      <Globe data={data} />
+      <Globe data={filteredData} />
     </div>
   );
 }
