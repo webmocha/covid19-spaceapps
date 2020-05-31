@@ -27,9 +27,13 @@ docker run -d \
 
 open http://localhost:4122/mission-control
 
-connect to db: `mongo-space:27017` _yes 27107, not 27034_
+create project: `spaceapps`
 
-create schema
+connect to db: `mongo-space:27017` _yes 27107, not 27034_
+db name: `gosat`
+alias: `gosat`
+
+create schema: Database Overview, find table: `entries`, [track] it
 
 ```graphql
 type entries{
