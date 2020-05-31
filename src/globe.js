@@ -1,12 +1,21 @@
-import React, { useMemo } from "react";
-import GlobeComponent from "react-globe.gl";  
+import React from "react";
+import GlobeComponent from "react-globe.gl";
 import image from "./earth-night.jpg";
 
-const Globe = ({ data }) => {
+const Globe = ({ data, cities }) => {
+  console.log(data)
 
   return (
-    <GlobeComponent 
+    <GlobeComponent
       globeImageUrl={image}
+      pointsData={data}
+      pointLat='latitude'
+      pointLng='longitude'
+      pointsMerge={true}
+      labelsData={cities}
+      labelLat='latitude'
+      labelLng='longitude'
+      labelText='city'
     />
   )
 }
