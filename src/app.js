@@ -10,14 +10,16 @@ function App() {
   const [data, setData] = useState([]);
   const [ cityList, setCityList ] = useState([]);
 
-  const filteredData = useMemo(() => 
+  const [currentPointInfo, setCurrentPointInfo] = useState({});
+
+  const filteredData = useMemo(() =>
     data
       .filter(d => d.date.includes(currentDate))
       .map(d => ({
         date: d.date,
         latitude: d.latitude,
         longitude: d.longitude,
-        gasValue: d[currentType],
+        gasValue: Number(d[currentType]),
         gasType: currentType
       }))
   , [data, currentDate, currentType])
@@ -45,10 +47,47 @@ function App() {
   }, [])
 
   return (
-    <div>
-      <Timeline setDate={setCurrentDate} />
-      <Filter setFilterType={setCurrentType} />
-      <Globe data={filteredData} cities={cityList}/>
+    <div style={{ position: 'relative' }}>
+      <div style={{
+        position: 'absolute',
+        backgroundColor: 'white',
+        zIndex: 1,
+        padding: '10px',
+        top: 10,
+        left: 10,
+      }}>
+        <Timeline setDate={setCurrentDate} />
+        <Filter setFilterType={setCurrentType} />
+      </div>
+      <div style={{
+        position: 'absolute',
+        backgroundColor: 'white',
+        zIndex: 1,
+        padding: '10px',
+        top: 10,
+        right: 10,
+        width: '250px',
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+          <span>
+            Date: {currentPointInfo && currentPointInfo.date}
+          </span>
+          <span>
+            Type: {currentPointInfo && currentPointInfo.gasType}
+          </span>
+          <span>
+            Value: {currentPointInfo && currentPointInfo.gasValue}
+          </span>
+        </div>
+      </div>
+      <Globe
+        data={filteredData}
+        cities={cityList}
+        handleCurrentPoint={setCurrentPointInfo}
+      />
     </div>
   );
 }
